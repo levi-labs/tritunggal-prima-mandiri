@@ -24,9 +24,11 @@
 
             <li class="active"><a href="{{ route('dashboard') }}"><i class="fa fa-dashboard yellow_color"></i>
                     <span>Dashboard</span></li>
-            <li><a href="widgets.html"><i class="fa fa-folder-open orange_color"></i><span>Kategori</span></a>
+            <li><a href="{{ route('kategori.index') }}"><i
+                        class="fa fa-folder-open orange_color"></i><span>Kategori</span></a>
             </li>
-            <li><a href="widgets.html"><i class="fa fa-truck orange_color"></i><span>Supplier</span></a>
+            <li><a href="{{ route('supplier.index') }}"><i
+                        class="fa fa-truck orange_color"></i><span>Supplier</span></a>
             </li>
             <li>
                 <a href="#element" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i

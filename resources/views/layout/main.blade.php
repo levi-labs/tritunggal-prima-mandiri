@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>Pluto - Responsive Bootstrap Admin Panel Templates</title>
+    <title>{{ $title ?? 'Aplikasi Inventory' }}</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -50,13 +50,6 @@
                 <div class="midde_cont">
                     @yield('content')
                     <!-- footer -->
-                    <div class="container-fluid">
-                        <div class="footer">
-                            <p>Copyright © 2018 Designed by html.design. All rights reserved.<br><br>
-                                Distributed By: <a href="https://themewagon.com/">ThemeWagon</a>
-                            </p>
-                        </div>
-                    </div>
                 </div>
                 <!-- end dashboard inner -->
             </div>

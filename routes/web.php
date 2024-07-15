@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\SupplierController;
+use App\Models\Supplier;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +19,25 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+
+Route::controller(SupplierController::class)->prefix('supplier')->group(function () {
+    Route::get('/', 'index')->name('supplier.index');
+    Route::get('/create', 'create')->name('supplier.create');
+    Route::post('/store', 'store')->name('supplier.store');
+    Route::get('/edit/{supplier}', 'edit')->name('supplier.edit');
+    Route::put('/update/{supplier}', 'update')->name('supplier.update');
+    Route::delete('/destroy/{supplier}', 'destroy')->name('supplier.destroy');
+});
+
+Route::controller(KategoriController::class)->prefix('kategori')->group(function () {
+    Route::get('/', 'index')->name('kategori.index');
+    Route::get('/create', 'create')->name('kategori.create');
+    Route::post('/store', 'store')->name('kategori.store');
+    Route::get('/edit/{kategori}', 'edit')->name('kategori.edit');
+    Route::post('/update/{kategori}', 'update')->name('kategori.update');
+    Route::get('/destroy/{kategori}', 'destroy')->name('kategori.destroy');
 });
