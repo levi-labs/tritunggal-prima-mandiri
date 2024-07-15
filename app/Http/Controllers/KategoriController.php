@@ -20,8 +20,10 @@ class KategoriController extends Controller
     {
 
         $title = 'Halaman Tambah Kategori';
+        $kategori = new Kategori();
+        $kode =  $kategori->generateKode();
 
-        return view('pages.kategori.create', compact('title'));
+        return view('pages.kategori.create', compact('title', 'kode'));
     }
 
     public function store(Request $request)

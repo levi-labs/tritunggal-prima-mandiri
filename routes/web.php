@@ -38,6 +38,6 @@ Route::controller(KategoriController::class)->prefix('kategori')->group(function
     Route::get('/create', 'create')->name('kategori.create');
     Route::post('/store', 'store')->name('kategori.store');
     Route::get('/edit/{kategori}', 'edit')->name('kategori.edit');
-    Route::post('/update/{kategori}', 'update')->name('kategori.update');
-    Route::get('/destroy/{kategori}', 'destroy')->name('kategori.destroy');
+    Route::put('/update/{kategori}', 'update')->name('kategori.update');
+    Route::delete('/destroy/{kategori}', 'destroy')->name('kategori.destroy');
 });
