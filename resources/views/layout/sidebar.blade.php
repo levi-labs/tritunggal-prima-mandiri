@@ -37,7 +37,7 @@
                     <span>Gudang</span></a>
             </li>
             <li>
-                <a href="{{ route('gudang.index') }}"><i class="fa fa-calculator orange_color"></i>
+                <a href="{{ route('pembelian.index') }}"><i class="fa fa-calculator orange_color"></i>
                     <span>Pembelian</span></a>
             </li>
 

@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GudangController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\PembelianController;
 use App\Http\Controllers\SupplierController;
 use App\Models\Supplier;
 use Illuminate\Support\Facades\Route;
@@ -50,4 +51,17 @@ Route::controller(GudangController::class)->prefix('gudang')->group(function () 
     Route::get('/edit/{gudang}', 'edit')->name('gudang.edit');
     Route::put('/update/{gudang}', 'update')->name('gudang.update');
     Route::delete('/destroy/{gudang}', 'destroy')->name('gudang.destroy');
+});
+
+Route::controller(PembelianController::class)->prefix('pembelian')->group(function () {
+    Route::get('/index/{gadung?}', 'index')->name('pembelian.index');
+    Route::get('/show/{pembelian}', 'show')->name('pembelian.show');
+    Route::get('/create', 'create')->name('pembelian.create');
+    Route::post('/store', 'store')->name('pembelian.store');
+    Route::get('/edit/{pembelian}', 'edit')->name('pembelian.edit');
+    Route::get('/accept/{pembelian}', 'accept')->name('pembelian.accept');
+    Route::put('/update/{pembelian}', 'update')->name('pembelian.update');
+    Route::delete('/destroy/{pembelian}', 'destroy')->name('pembelian.destroy');
+    Route::get('/insert-barang-to-gudang/{pembelian}', 'insertBarangToGudang')->name('pembelian.insert.gudang');
+    Route::post('/insert-barang-to-gudang/{pembelian}', 'insertBarangToGudangStore')->name('pembelian.insert.gudang.store');
 });
