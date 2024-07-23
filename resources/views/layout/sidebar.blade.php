@@ -37,8 +37,12 @@
                     <span>Gudang</span></a>
             </li>
             <li>
-                <a href="{{ route('pembelian.index') }}"><i class="fa fa-calculator orange_color"></i>
+                <a href="{{ route('pembelian.index') }}"><i class="fa fa-calculator green_color"></i>
                     <span>Pembelian</span></a>
+            </li>
+            <li>
+                <a href="{{ route('penjualan.index') }}"><i class="fa fa-shopping-cart blue2_color"></i>
+                    <span>Penjualan</span></a>
             </li>
 
             <li>

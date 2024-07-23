@@ -20,7 +20,10 @@ class Barang extends Model
             set: fn ($value) => strtoupper($value),
         );
     }
-
+    public function pembelian()
+    {
+        return $this->belongsTo(Pembelian::class, 'pembelian_id', 'id');
+    }
     public function supplier()
     {
         return $this->belongsTo(Supplier::class, 'supplier_id', 'id');
