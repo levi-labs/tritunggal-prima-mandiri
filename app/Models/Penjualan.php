@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Penjualan extends Model
 {
@@ -35,5 +36,14 @@ class Penjualan extends Model
         }
 
         return $number;
+    }
+    public function reportPenjualan($from, $to)
+    {
+        $data = DB::table('penjualan')
+            ->join('barang', 'penjualan.barang_id', '=', 'barang.id')
+            ->join('gudang', 'barang.gudang_id', '=', 'gudang.id')
+            ->select('penjualan.*', 'barang.*', 'gudang.*')
+            ->get();
+        return $data;
     }
 }

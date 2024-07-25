@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Pembelian extends Model
 {
@@ -43,5 +44,33 @@ class Pembelian extends Model
         }
 
         return $number;
+    }
+
+    public function reportPembelian($from, $to)
+    {
+        if ($from !== null || $to === null) {
+            $data  = DB::table('pembelian')
+                ->join('supplier', 'pembelian.supplier_id', '=', 'supplier.id')
+                ->join('kategori', 'pembelian.kategori_id', '=', 'kategori.id')
+                ->select('pembelian.*', 'supplier.nama as supplier', 'kategori.nama as kategori')
+                ->where('pembelian.tanggal', '>=', $from)
+                ->get();
+        } elseif ($from === null || $to !== null) {
+            $data  = DB::table('pembelian')
+                ->join('supplier', 'pembelian.supplier_id', '=', 'supplier.id')
+                ->join('kategori', 'pembelian.kategori_id', '=', 'kategori.id')
+                ->select('pembelian.*', 'supplier.nama as supplier', 'kategori.nama as kategori')
+                ->where('pembelian.tanggal', '<=', $to)
+                ->get();
+        } elseif ($from !== null || $to !== null) {
+            $data  = DB::table('pembelian')
+                ->join('supplier', 'pembelian.supplier_id', '=', 'supplier.id')
+                ->join('kategori', 'pembelian.kategori_id', '=', 'kategori.id')
+                ->select('pembelian.*', 'supplier.nama as supplier', 'kategori.nama as kategori')
+                ->whereBetween('pembelian.tanggal', [$from, $to])
+                ->get();
+        }
+
+        return $data;
     }
 }
