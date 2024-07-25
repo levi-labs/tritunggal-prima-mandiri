@@ -13,6 +13,7 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- site icon -->
     <link rel="icon" href="{{ asset('/assets/images/fevicon.png') }}" type="image/png" />
     <!-- bootstrap css -->
@@ -29,6 +30,8 @@
     <link rel="stylesheet" href="{{ asset('/assets/css/perfect-scrollbar.css') }}" />
     <!-- custom css -->
     <link rel="stylesheet" href="{{ asset('/assets/css/custom.css') }}" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -56,7 +59,8 @@
         </div>
     </div>
     <!-- jQuery -->
-    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+
+    {{-- <script src="{{ asset('assets/js/jquery.min.js') }}"></script> --}}
     <script src="{{ asset('assets/js/popper.min.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
     <!-- wow animation -->

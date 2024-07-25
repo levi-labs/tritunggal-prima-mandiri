@@ -70,6 +70,7 @@ Route::controller(PembelianController::class)->prefix('pembelian')->group(functi
 Route::controller(PenjualanController::class)->prefix('penjualan')->group(function () {
     Route::get('/', 'index')->name('penjualan.index');
     Route::get('/show/{kode}', 'show')->name('penjualan.show');
+    Route::get('/get-barang', 'getBarang')->name('penjualan.getbarang');
     Route::get('/create', 'create')->name('penjualan.create');
     Route::get('/add-other', 'addOther')->name('penjualan.add.other');
     Route::post('/store', 'store')->name('penjualan.store');

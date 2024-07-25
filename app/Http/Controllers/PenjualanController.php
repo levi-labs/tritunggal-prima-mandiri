@@ -25,6 +25,17 @@ class PenjualanController extends Controller
         return view('pages.penjualan.index', compact('title', 'data'));
     }
 
+    public function getBarang(Request $request)
+    {
+        try {
+            $data = Barang::where('id', $request->id)->first();
+
+            return response()->json($data, 200);
+        } catch (\Throwable $th) {
+            return response()->json($th->getMessage(), 500);
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -65,7 +76,9 @@ class PenjualanController extends Controller
             'harga' => 'required',
             'tanggal' => 'required',
         ]);
+        dd($request->all());
         DB::beginTransaction();
+
         try {
 
             $penjualan = new Penjualan();

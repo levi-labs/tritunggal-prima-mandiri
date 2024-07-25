@@ -28,7 +28,14 @@
                                         <input type="text" class="form-control" id="kode" name="kode"
                                             value={{ $penjualan->kode }} readonly>
                                     </div>
-
+                                    <div class="form-group">
+                                        <label for="harga">Harga Jual</label>
+                                        <input type="number" class="form-control" id="harga" name="harga"
+                                            min="0" value={{ $penjualan->harga }} readonly>
+                                        @error('harga')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
 
                                     <div class="form-group">
                                         <label for="quantity">Quantity</label>
@@ -38,14 +45,7 @@
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    <div class="form-group">
-                                        <label for="harga">Harga Jual</label>
-                                        <input type="number" class="form-control" id="harga" name="harga"
-                                            min="0" value={{ $penjualan->harga }}>
-                                        @error('harga')
-                                            <div class="text-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
+
 
                                 </div>
                                 <div class="col-md-6">
@@ -86,4 +86,33 @@
         </div>
 
     </div>
+    <script>
+        $(document).ready(function() {
+            $('#barang').on('change', function() {
+                var id = $(this).val();
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                })
+                $.ajax({
+                    url: "{{ route('penjualan.getbarang') }}",
+                    method: 'GET',
+                    data: {
+                        id: id,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    dataType: 'json',
+                    success: function(data) {
+                        console.log(data);
+                        $('#harga').val(data.harga_jual).attr('readonly', true);
+                    },
+                    error: function(data) {
+                        console.log(data);
+                    }
+                });
+
+            });
+        });
+    </script>
 @endsection
