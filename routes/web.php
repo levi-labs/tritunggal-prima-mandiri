@@ -5,6 +5,7 @@ use App\Http\Controllers\GudangController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\PembelianController;
 use App\Http\Controllers\PenjualanController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SupplierController;
 use App\Models\Supplier;
 use Illuminate\Support\Facades\Route;
@@ -77,4 +78,11 @@ Route::controller(PenjualanController::class)->prefix('penjualan')->group(functi
     Route::get('/edit/{penjualan}', 'edit')->name('penjualan.edit');
     Route::put('/update/{penjualan}', 'update')->name('penjualan.update');
     Route::delete('/destroy/{penjualan}', 'destroy')->name('penjualan.destroy');
+});
+
+Route::controller(ReportController::class)->prefix('report')->group(function () {
+
+    Route::get('/pembelian', 'formReportPembelian')->name('report.pembelian');
+    Route::post('/pembelian', 'reportPembelian')->name('report.pembelian.post');
+    Route::get('/penjualan', 'penjualan')->name('report.penjualan');
 });

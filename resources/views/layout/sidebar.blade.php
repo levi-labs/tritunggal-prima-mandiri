@@ -50,7 +50,7 @@
                         class="fa fa-clone red_color"></i> <span>Report</span></a>
                 <ul class="collapse list-unstyled" id="additional_page">
                     <li>
-                        <a href="profile.html">> <span>Report Pembelian</span></a>
+                        <a href="{{ route('report.pembelian') }}">> <span>Report Pembelian</span></a>
                     </li>
                     <li>
                         <a href="project.html">> <span>Report Penjualan</span></a>

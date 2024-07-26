@@ -48,29 +48,30 @@ class Pembelian extends Model
 
     public function reportPembelian($from, $to)
     {
-        if ($from !== null || $to === null) {
+        if ($from !== null && $to === null) {
             $data  = DB::table('pembelian')
                 ->join('supplier', 'pembelian.supplier_id', '=', 'supplier.id')
                 ->join('kategori', 'pembelian.kategori_id', '=', 'kategori.id')
                 ->select('pembelian.*', 'supplier.nama as supplier', 'kategori.nama as kategori')
                 ->where('pembelian.tanggal', '>=', $from)
                 ->get();
-        } elseif ($from === null || $to !== null) {
+            return $data;
+        } elseif ($from === null && $to !== null) {
             $data  = DB::table('pembelian')
                 ->join('supplier', 'pembelian.supplier_id', '=', 'supplier.id')
                 ->join('kategori', 'pembelian.kategori_id', '=', 'kategori.id')
                 ->select('pembelian.*', 'supplier.nama as supplier', 'kategori.nama as kategori')
                 ->where('pembelian.tanggal', '<=', $to)
                 ->get();
-        } elseif ($from !== null || $to !== null) {
+            return $data;
+        } elseif ($from !== null && $to !== null) {
             $data  = DB::table('pembelian')
                 ->join('supplier', 'pembelian.supplier_id', '=', 'supplier.id')
                 ->join('kategori', 'pembelian.kategori_id', '=', 'kategori.id')
                 ->select('pembelian.*', 'supplier.nama as supplier', 'kategori.nama as kategori')
                 ->whereBetween('pembelian.tanggal', [$from, $to])
                 ->get();
+            return $data;
         }
-
-        return $data;
     }
 }

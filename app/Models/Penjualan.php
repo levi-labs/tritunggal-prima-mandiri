@@ -37,12 +37,19 @@ class Penjualan extends Model
 
         return $number;
     }
-    public function reportPenjualan($from, $to)
+    public function reportPenjualan()
     {
         $data = DB::table('penjualan')
             ->join('barang', 'penjualan.barang_id', '=', 'barang.id')
             ->join('gudang', 'barang.gudang_id', '=', 'gudang.id')
-            ->select('penjualan.*', 'barang.*', 'gudang.*')
+            ->join('barang', 'barang.pembelian_id', '=', 'pembelian.id')
+            ->select(
+                'penjualan.*',
+
+                'barang.*',
+                'gudang.*',
+                'pembelian.nama',
+            )
             ->get();
         return $data;
     }

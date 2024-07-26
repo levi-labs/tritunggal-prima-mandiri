@@ -12,7 +12,7 @@ class ReportController extends Controller
     public function formReportPembelian()
     {
         $title = 'Laporan Pembelian';
-        return view('pages.report.pembelian');
+        return view('pages.report.pembelian', compact('title'));
     }
 
     public function formReportPenjualan()
@@ -31,6 +31,8 @@ class ReportController extends Controller
         $report = new Pembelian();
 
         $data = $report->reportPembelian($from, $to);
+
+
 
         return view('pages.report.print-pembelian', compact('title', 'data', 'from', 'to'));
     }
