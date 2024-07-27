@@ -24,12 +24,12 @@
                     @endif
                     <div class="full graph_head">
                         <div class="heading1 margin_0">
-                            <h2>Daftar Pembelian</h2>
+                            <h2>Daftar Barang Belum Masuk Gudang</h2>
                         </div>
                     </div>
                     <div class="row justify-content-between">
                         <div class="col-md-6 mx-4">
-                            <a href="{{ route('pembelian.create') }}" class="btn btn-primary">Tambah</a>
+                            {{-- <a href="{{ route('pembelian.create') }}" class="btn btn-primary">Tambah</a> --}}
                         </div>
                         <div class="col-md-5 mx-4 text-right">
                             <div class="dropdown_section float-right">
@@ -38,9 +38,9 @@
                                         aria-expanded="false">Status Pembelian</button>
                                     <div class="dropdown-menu" x-placement="bottom-start"
                                         style="position: absolute; transform: translate3d(0px, 33px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                        <a class="dropdown-item" href="{{ route('pembelian.index') }}">Pembelian</a>
+                                        <a class="dropdown-item" href="{{ route('pembelian.index.gudang') }}">Pembelian</a>
                                         <a class="dropdown-item"
-                                            href="{{ route('pembelian.index', ['status' => 'gudang']) }}">Gudang</a>
+                                            href="{{ route('pembelian.index.gudang', ['status' => 'gudang']) }}">Gudang</a>
                                     </div>
                                 </div>
                             </div>
@@ -70,19 +70,25 @@
                                             <td>{{ $item->tanggal }}</td>
                                             <td class="text-center">
                                                 @if (Auth::user()->role == 'administrator' || Auth::user()->role == 'gudang')
-                                                    <a href="{{ route('pembelian.insert.gudang', $item->id) }}"
-                                                        class="btn btn-warning">Accept</a>
+                                                    @if ($item->status !== 'gudang')
+                                                        <a href="{{ route('pembelian.insert.gudang', $item->id) }}"
+                                                            class="btn btn-warning">Accept</a>
+                                                    @endif
                                                 @endif
                                                 <a href="{{ route('pembelian.show', $item->id) }}"
                                                     class="btn btn-secondary">Detail</a>
-                                                <a href="{{ route('pembelian.edit', $item->id) }}"
-                                                    class="btn btn-info">Edit</a>
-                                                <form action="{{ route('pembelian.destroy', $item->id) }}" class="d-inline"
-                                                    method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                                </form>
+                                                @if (Auth::user()->role == 'administrator' || Auth::user()->role == 'pembelian')
+                                                    <a href="{{ route('pembelian.edit', $item->id) }}"
+                                                        class="btn btn-info">Edit</a>
+
+                                                    <form action="{{ route('pembelian.destroy', $item->id) }}"
+                                                        class="d-inline" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                                    </form>
+                                                @endif
+
 
                                             </td>
 

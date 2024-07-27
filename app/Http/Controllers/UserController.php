@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -84,5 +85,27 @@ class UserController extends Controller
         } catch (\Exception $th) {
             return redirect()->back()->with('error', $th->getMessage());
         }
+    }
+
+    public function ubahPassword()
+    {
+        $title = 'Ubah Password';
+        return view('pages.user.ubah-password', compact('title'));
+    }
+
+    public function updatePassword(Request $request)
+    {
+        $request->validate([
+            'password_lama' => 'required',
+            'password_baru' => 'required',
+        ]);
+        $user = User::find(auth()->user()->id);
+        if (Hash::check($request->password_lama, $user->password)) {
+            $user->update([
+                'password' => bcrypt($request->password_baru),
+            ]);
+            return redirect()->back()->with('success', 'Password Berhasil Diubah');
+        }
+        return redirect()->back()->with('error', 'Password lama tidak sesuai');
     }
 }

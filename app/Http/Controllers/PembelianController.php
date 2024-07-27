@@ -33,6 +33,23 @@ class PembelianController extends Controller
 
         return view('pages.pembelian.index', compact('title', 'data'));
     }
+    public function indexGudang()
+    {
+        $title  = 'Halaman Daftar Masuk Gudang';
+
+        $check_url = request()->get('status');
+
+        if ($check_url === 'gudang') {
+
+            $data = Pembelian::where('status', 'gudang')->get();
+        } else {
+            // dd('false');
+            $data   = Pembelian::where('status', 'pending')->get();
+        }
+        // $data   = Pembelian::all();
+
+        return view('pages.pembelian.index-gudang', compact('title', 'data'));
+    }
     public function insertBarangToGudang(Pembelian $pembelian)
     {
 
