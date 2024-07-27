@@ -25,7 +25,7 @@
                                 {{ session('error') }}
                             </div>
                         @endif
-                        <form action="{{ route('report.pembelian.post') }}" method="POST">
+                        <form action="{{ route('report.pembelian.post') }}" method="POST" target="_blank">
                             @csrf
 
                             <div class="form-group">

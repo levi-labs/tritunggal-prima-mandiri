@@ -17,8 +17,9 @@ class ReportController extends Controller
 
     public function formReportPenjualan()
     {
+
         $title = 'Laporan Penjualan';
-        return view('pages.report.penjualan');
+        return view('pages.report.penjualan', compact('title'));
     }
 
     public function reportPembelian(Request $request)
@@ -46,6 +47,7 @@ class ReportController extends Controller
         $report = new Penjualan();
 
         $data = $report->reportPenjualan($from, $to);
+        // dd($data);
 
         return view('pages.report.print-penjualan', compact('title', 'data', 'from', 'to'));
     }

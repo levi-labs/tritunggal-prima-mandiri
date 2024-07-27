@@ -84,5 +84,6 @@ Route::controller(ReportController::class)->prefix('report')->group(function () 
 
     Route::get('/pembelian', 'formReportPembelian')->name('report.pembelian');
     Route::post('/pembelian', 'reportPembelian')->name('report.pembelian.post');
-    Route::get('/penjualan', 'penjualan')->name('report.penjualan');
+    Route::get('/penjualan', 'formReportPenjualan')->name('report.penjualan');
+    Route::post('/penjualan', 'reportPenjualan')->name('report.penjualan.post');
 });

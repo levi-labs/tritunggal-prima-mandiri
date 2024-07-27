@@ -37,20 +37,64 @@ class Penjualan extends Model
 
         return $number;
     }
-    public function reportPenjualan()
+    public function reportPenjualan($from, $to)
     {
-        $data = DB::table('penjualan')
-            ->join('barang', 'penjualan.barang_id', '=', 'barang.id')
-            ->join('gudang', 'barang.gudang_id', '=', 'gudang.id')
-            ->join('barang', 'barang.pembelian_id', '=', 'pembelian.id')
-            ->select(
-                'penjualan.*',
+        if ($from !== null && $to === null) {
+            $data = DB::table('penjualan')
+                ->join('barang', 'penjualan.barang_id', '=', 'barang.id')
+                ->join('gudang', 'barang.gudang_id', '=', 'gudang.id')
+                ->join('pembelian', 'barang.pembelian_id', '=', 'pembelian.id')
+                ->join('kategori', 'pembelian.kategori_id', '=', 'kategori.id')
+                ->select(
+                    'penjualan.*',
 
-                'barang.*',
-                'gudang.*',
-                'pembelian.nama',
-            )
-            ->get();
-        return $data;
+                    'barang.*',
+                    'gudang.*',
+                    'pembelian.nama',
+                    'pembelian.satuan',
+                    'kategori.nama as kategori',
+                )
+                ->where('penjualan.tanggal', '>=', $from)
+                ->get();
+            return $data;
+        } elseif ($from === null && $to !== null) {
+            $data = DB::table('penjualan')
+                ->join('barang', 'penjualan.barang_id', '=', 'barang.id')
+                ->join('gudang', 'barang.gudang_id', '=', 'gudang.id')
+                ->join('pembelian', 'barang.pembelian_id', '=', 'pembelian.id')
+                ->join('kategori', 'pembelian.kategori_id', '=', 'kategori.id')
+                ->select(
+                    'penjualan.*',
+
+                    'barang.*',
+                    'gudang.*',
+                    'pembelian.nama',
+                    'pembelian.satuan',
+                    'kategori.nama as kategori',
+
+                )
+                ->where('penjualan.tanggal', '<=', $to)
+                ->get();
+            return $data;
+        } elseif ($from !== null && $to !== null) {
+            $data = DB::table('penjualan')
+                ->join('barang', 'penjualan.barang_id', '=', 'barang.id')
+                ->join('gudang', 'barang.gudang_id', '=', 'gudang.id')
+                ->join('pembelian', 'barang.pembelian_id', '=', 'pembelian.id')
+                ->join('kategori', 'pembelian.kategori_id', '=', 'kategori.id')
+                ->select(
+                    'penjualan.*',
+
+                    'barang.*',
+                    'gudang.*',
+                    'pembelian.nama',
+                    'pembelian.satuan',
+                    'kategori.nama as kategori',
+
+                )
+                ->whereBetween('penjualan.tanggal', [$from, $to])
+                ->get();
+            return $data;
+        }
     }
 }

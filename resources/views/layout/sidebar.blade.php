@@ -53,7 +53,7 @@
                         <a href="{{ route('report.pembelian') }}">> <span>Report Pembelian</span></a>
                     </li>
                     <li>
-                        <a href="project.html">> <span>Report Penjualan</span></a>
+                        <a href="{{ route('report.penjualan') }}">> <span>Report Penjualan</span></a>
                     </li>
                 </ul>
             </li>
