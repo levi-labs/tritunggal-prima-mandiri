@@ -3,7 +3,7 @@
     <div class="table-print">
         <button id="btn-print" class="d-print-table" onclick="window.print()">Print</button>
         <center>
-            <h3>LAPORAN PEMBELIAN</h3>
+            <h3>LAPORAN PENJUALAN</h3>
             <h4>Berikut adalah hasil laporan dari Periode {{ $from ?? 'Awal Periode' }} - {{ $to ?? 'Akhir Periode' }}</h4>
         </center>
         <table class="table table-bordered d-print-table" width="100%" border="2"

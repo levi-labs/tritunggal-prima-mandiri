@@ -58,7 +58,8 @@
                 </ul>
             </li>
 
-            <li><a href="settings.html"><i class="fa fa-cog yellow_color"></i> <span>User Management</span></a>
+            <li><a href="{{ route('user.index') }}"><i class="fa fa-cog yellow_color"></i> <span>User
+                        Management</span></a>
             </li>
         </ul>
     </div>

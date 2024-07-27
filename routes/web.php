@@ -7,6 +7,7 @@ use App\Http\Controllers\PembelianController;
 use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\UserController;
 use App\Models\Supplier;
 use Illuminate\Support\Facades\Route;
 
@@ -86,4 +87,14 @@ Route::controller(ReportController::class)->prefix('report')->group(function () 
     Route::post('/pembelian', 'reportPembelian')->name('report.pembelian.post');
     Route::get('/penjualan', 'formReportPenjualan')->name('report.penjualan');
     Route::post('/penjualan', 'reportPenjualan')->name('report.penjualan.post');
+});
+
+Route::controller(UserController::class)->prefix('user')->group(function () {
+    Route::get('/', 'index')->name('user.index');
+    Route::get('/create', 'create')->name('user.create');
+    Route::get('/reset-password/{user}', 'resetPassword')->name('user.reset-password');
+    Route::post('/store', 'store')->name('user.store');
+    Route::get('/edit/{user}', 'edit')->name('user.edit');
+    Route::put('/update/{user}', 'update')->name('user.update');
+    Route::delete('/destroy/{user}', 'destroy')->name('user.destroy');
 });
