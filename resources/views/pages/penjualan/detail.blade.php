@@ -30,6 +30,8 @@
                     <div class="row justify-content-between">
                         <div class="col-md-6 mx-4 mt-3">
                             <a href="{{ route('penjualan.add.other') }}" class="btn btn-primary">Tambah</a>
+                            <a href="{{ route('penjualan.invoice', $kode) }}" class="btn btn-secondary"
+                                target="_blank">Print</a>
                         </div>
 
                     </div>

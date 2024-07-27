@@ -118,7 +118,7 @@ class PenjualanController extends Controller
         $title      = 'Halaman Detail Penjualan';
         $data  = Penjualan::where('kode', $kode)->get();
         session()->put('kode_penjualan', $kode);
-        return view('pages.penjualan.detail', compact('title', 'data'));
+        return view('pages.penjualan.detail', compact('title', 'data', 'kode'));
     }
 
     public function addOther()
@@ -231,6 +231,24 @@ class PenjualanController extends Controller
             return back()->with('success', 'Data Berhasil Dihapus');
         } catch (\Throwable $th) {
             DB::rollBack();
+            return redirect()->back()->with('error', $th->getMessage());
+        }
+    }
+
+    public function printInvoice($kode)
+    {
+        try {
+            $title = 'Halaman Invoice Penjualan' . $kode;
+            $data = DB::table('penjualan')
+                ->join('barang', 'penjualan.barang_id', '=', 'barang.id')
+                ->join('pembelian', 'barang.pembelian_id', '=', 'pembelian.id')
+                ->join('kategori', 'pembelian.kategori_id', '=', 'kategori.id')
+                ->select('pembelian.nama', 'pembelian.satuan', 'penjualan.id', 'penjualan.kode', 'penjualan.qty', 'penjualan.harga', 'penjualan.subtotal', 'penjualan.tanggal', 'kategori.nama as kategori')
+                ->where('penjualan.kode', $kode)
+                ->get();
+            // dd($data);
+            return view('pages.penjualan.invoice', compact('data', 'kode', 'title'));
+        } catch (\Exception $th) {
             return redirect()->back()->with('error', $th->getMessage());
         }
     }

@@ -79,6 +79,7 @@ Route::controller(PenjualanController::class)->prefix('penjualan')->group(functi
     Route::get('/edit/{penjualan}', 'edit')->name('penjualan.edit');
     Route::put('/update/{penjualan}', 'update')->name('penjualan.update');
     Route::delete('/destroy/{penjualan}', 'destroy')->name('penjualan.destroy');
+    Route::get('/print-invoice/{kode}', 'printInvoice')->name('penjualan.invoice');
 });
 
 Route::controller(ReportController::class)->prefix('report')->group(function () {
