@@ -24,7 +24,7 @@
                     @endif
                     <div class="full graph_head">
                         <div class="heading1 margin_0">
-                            <h2>Daftar Pembelian</h2>
+                            <h2>Daftar Detail Penjualan</h2>
                         </div>
                     </div>
                     <div class="row justify-content-between">
