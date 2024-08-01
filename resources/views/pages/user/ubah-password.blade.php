@@ -14,7 +14,7 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Form Report Pembelian</h5>
+                        <h5 class="card-title">Form Ubah Password</h5>
                         @if (session()->has('success'))
                             <div class="alert alert-success" role="alert">
                                 {{ session('success') }}
