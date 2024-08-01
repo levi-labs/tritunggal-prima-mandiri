@@ -55,6 +55,9 @@
                                         <th>No</th>
                                         <th>Kode Pembelian</th>
                                         <th>Nama Barang</th>
+                                        @if (isset($item->barang->harga_jual))
+                                            <th>Harga Jual</th>
+                                        @endif
                                         <th>Status</th>
                                         <th>Tanggal Pembelian</th>
                                         <th>Aksi</th>
@@ -66,6 +69,10 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $item->kode }}</td>
                                             <td>{{ $item->nama }}</td>
+                                            @if (isset($item->barang->harga_jual))
+                                                <td>{{ $item->barang->harga_jual }}</td>
+                                            @endif
+
                                             <td>{{ $item->status }}</td>
                                             <td>{{ $item->tanggal }}</td>
                                             <td class="text-center">
@@ -73,21 +80,12 @@
                                                     @if ($item->status !== 'gudang')
                                                         <a href="{{ route('pembelian.insert.gudang', $item->id) }}"
                                                             class="btn btn-warning">Accept</a>
+                                                    @elseif ($item->status === 'gudang')
+                                                        <a href="{{ route('pembelian.edit.item.gudang', $item->id) }}"
+                                                            class="btn btn-info">Edit</a>
                                                     @endif
                                                 @endif
-                                                <a href="{{ route('pembelian.show', $item->id) }}"
-                                                    class="btn btn-secondary">Detail</a>
-                                                @if (Auth::user()->role == 'administrator' || Auth::user()->role == 'pembelian')
-                                                    <a href="{{ route('pembelian.edit', $item->id) }}"
-                                                        class="btn btn-info">Edit</a>
 
-                                                    <form action="{{ route('pembelian.destroy', $item->id) }}"
-                                                        class="d-inline" method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                                    </form>
-                                                @endif
 
 
                                             </td>

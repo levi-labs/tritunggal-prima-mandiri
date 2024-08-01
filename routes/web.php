@@ -77,6 +77,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/insert-barang-to-gudang/{pembelian}', 'insertBarangToGudang')->name('pembelian.insert.gudang');
         Route::post('/insert-barang-to-gudang/{pembelian}', 'insertBarangToGudangStore')->name('pembelian.insert.gudang.store');
         Route::get('/index-gudang/{gudang?}', 'indexGudang')->name('pembelian.index.gudang');
+        Route::get('/edit-item-gudang/{pembelian}', 'editItemGudang')->name('pembelian.edit.item.gudang');
+        Route::put('/update-item-gudang/{pembelian}', 'updateItemGudang')->name('pembelian.update.item.gudang');
     });
 
     Route::controller(PenjualanController::class)->prefix('penjualan')->group(function () {

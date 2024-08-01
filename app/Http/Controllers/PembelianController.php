@@ -91,6 +91,46 @@ class PembelianController extends Controller
         }
     }
 
+    public function editItemGudang(Pembelian $pembelian)
+    {
+
+        $title  = 'Halaman Edit Item Gudang';
+        $barang = Barang::where('pembelian_id', $pembelian->id)->first();
+        $gudangs = Gudang::all();
+        // dd($barang);
+        return view('pages.pembelian.update', compact(
+            'title',
+            'pembelian',
+            'barang',
+            'gudangs'
+        ));
+    }
+
+    public function updateItemGudang(Request $request, Pembelian $pembelian)
+    {
+
+        $this->validate($request, [
+            'kode' => 'required',
+            'gudang' => 'required',
+            'harga' => 'required',
+        ]);
+
+        DB::beginTransaction();
+        try {
+            $barang                 = Barang::where('pembelian_id', $pembelian->id)->first();
+            $barang->pembelian_id   = $request->pembelian;
+            $barang->gudang_id      = $request->gudang;
+            $barang->kode           = $request->kode;
+            $barang->harga_jual     = $request->harga;
+            $barang->update();
+            DB::commit();
+            return redirect()->route('pembelian.index.gudang')->with('success', 'Barang Berhasil Diupdate');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return redirect()->back()->with('error', $th->getMessage());
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      */

@@ -51,7 +51,7 @@
 
             @if (Auth::user()->role == 'administrator' || Auth::user()->role == 'gudang')
                 <li>
-                    <a href="{{ route('pembelian.index.gudang') }}"><i class="fa fa-calculator green_color"></i>
+                    <a href="{{ route('pembelian.index.gudang') }}"><i class="fa fa-map purple_color2"></i>
                         <span>Daftar Item Gudang</span></a>
                 </li>
             @endif

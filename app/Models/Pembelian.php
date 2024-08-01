@@ -21,6 +21,10 @@ class Pembelian extends Model
             set: fn ($value) => strtoupper($value),
         );
     }
+    public function barang()
+    {
+        return $this->hasOne(Barang::class, 'pembelian_id', 'id');
+    }
     public function supplier()
     {
         return $this->belongsTo(Supplier::class, 'supplier_id', 'id');

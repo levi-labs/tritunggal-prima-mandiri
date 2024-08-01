@@ -57,7 +57,7 @@
                                                     method="POST">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                    <button type="submit" class="btn btn-danger">Hapus</button>
                                                 </form>
                                                 <a href="{{ route('user.reset-password', $item->id) }}"
                                                     class="btn btn-outline-dark">Reset Password</a>
