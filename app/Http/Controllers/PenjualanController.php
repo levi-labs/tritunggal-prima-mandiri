@@ -76,7 +76,7 @@ class PenjualanController extends Controller
             'harga' => 'required',
             'tanggal' => 'required',
         ]);
-        dd($request->all());
+        // dd($request->all());
         DB::beginTransaction();
 
         try {

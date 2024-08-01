@@ -56,6 +56,7 @@
                                         <th>Kode Pembelian</th>
                                         <th>Nama Barang</th>
                                         @if (isset($item->barang->harga_jual))
+                                            <th>Gudang</th>
                                             <th>Harga Jual</th>
                                         @endif
                                         <th>Status</th>
@@ -69,7 +70,9 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $item->kode }}</td>
                                             <td>{{ $item->nama }}</td>
+
                                             @if (isset($item->barang->harga_jual))
+                                                <td>{{ $item->barang->gudang->nama }}</td>
                                                 <td>{{ $item->barang->harga_jual }}</td>
                                             @endif
 
