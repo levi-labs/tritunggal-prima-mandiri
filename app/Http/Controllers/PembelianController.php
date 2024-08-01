@@ -26,14 +26,24 @@ class PembelianController extends Controller
             $title  = 'Halaman Daftar Pembelian di Gudang';
 
             $data = Pembelian::where('status', 'gudang')->get();
+            $head_gudang = 'Gudang';
+            $head_harga = 'Harga Jual';
+            return view('pages.pembelian.index', compact(
+                'title',
+                'data',
+                'head_gudang',
+                'head_harga'
+            ));
         } else {
             $title  = 'Halaman Pembelian ';
             // dd('false');
             $data   = Pembelian::where('status', 'pending')->get();
+
+            return view('pages.pembelian.index', compact('title', 'data'));
         }
         // $data   = Pembelian::all();
 
-        return view('pages.pembelian.index', compact('title', 'data'));
+
     }
     public function indexGudang()
     {

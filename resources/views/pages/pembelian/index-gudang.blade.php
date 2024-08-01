@@ -50,14 +50,15 @@
 
                         <div class="table-responsive-sm">
                             <table class="table table-bordered">
+
                                 <thead>
                                     <tr>
                                         <th>No</th>
                                         <th>Kode Pembelian</th>
                                         <th>Nama Barang</th>
-                                        @if (isset($item->barang->harga_jual))
+                                        @if (isset($data[0]->barang->harga_jual) || isset($data[0]->barang->gudang->nama))
                                             <th>Gudang</th>
-                                            <th>Harga Jual</th>
+                                            <th>Harga</th>
                                         @endif
                                         <th>Status</th>
                                         <th>Tanggal Pembelian</th>

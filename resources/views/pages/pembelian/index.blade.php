@@ -56,7 +56,7 @@
                                         <th>Kode Pembelian</th>
                                         <th>Nama Barang</th>
                                         <th>Status</th>
-                                        @if (isset($item->barang->harga_jual))
+                                        @if (isset($data[0]->barang->harga_jual) || isset($data[0]->barang->gudang->nama))
                                             <th>Gudang</th>
                                         @endif
                                         <th>Tanggal Pembelian</th>
