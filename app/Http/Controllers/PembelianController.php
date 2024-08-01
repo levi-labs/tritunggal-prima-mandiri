@@ -18,14 +18,16 @@ class PembelianController extends Controller
      */
     public function index()
     {
-        $title  = 'Halaman Pembelian';
+
 
         $check_url = request()->get('status');
 
         if ($check_url === 'gudang') {
+            $title  = 'Halaman Daftar Pembelian di Gudang';
 
             $data = Pembelian::where('status', 'gudang')->get();
         } else {
+            $title  = 'Halaman Pembelian ';
             // dd('false');
             $data   = Pembelian::where('status', 'pending')->get();
         }
@@ -35,15 +37,16 @@ class PembelianController extends Controller
     }
     public function indexGudang()
     {
-        $title  = 'Halaman Daftar Masuk Gudang';
+
 
         $check_url = request()->get('status');
 
         if ($check_url === 'gudang') {
-
+            $title  = 'Halaman Daftar Barang di Gudang';
             $data = Pembelian::where('status', 'gudang')->get();
         } else {
             // dd('false');
+            $title  = 'Halaman Daftar Masuk Gudang';
             $data   = Pembelian::where('status', 'pending')->get();
         }
         // $data   = Pembelian::all();

@@ -24,7 +24,7 @@
                     @endif
                     <div class="full graph_head">
                         <div class="heading1 margin_0">
-                            <h2>Daftar Pembelian</h2>
+                            {{-- <h2>Daftar Pembelian</h2> --}}
                         </div>
                     </div>
                     <div class="row justify-content-between">
@@ -56,6 +56,9 @@
                                         <th>Kode Pembelian</th>
                                         <th>Nama Barang</th>
                                         <th>Status</th>
+                                        @if (isset($item->barang->harga_jual))
+                                            <th>Gudang</th>
+                                        @endif
                                         <th>Tanggal Pembelian</th>
                                         <th>Aksi</th>
                                     </tr>
@@ -67,6 +70,10 @@
                                             <td>{{ $item->kode }}</td>
                                             <td>{{ $item->nama }}</td>
                                             <td>{{ $item->status }}</td>
+                                            @if (isset($item->barang->harga_jual))
+                                                <td>{{ $item->barang->gudang->nama }}</td>
+                                            @endif
+
                                             <td>{{ $item->tanggal }}</td>
                                             <td class="text-center">
                                                 @if (Auth::user()->role == 'administrator' || Auth::user()->role == 'gudang')
